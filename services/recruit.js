@@ -28,7 +28,7 @@ export const readAllRecruitNotice = async () => {
   return data;
 }
 
-export const readRecruitNoticeByKeyword = async(keyword) => {
+export const readRecruitNoticeByKeyword = async (keyword) => {
   const result = await recruitRepository.readRecruitNoticeByKeyword(keyword);
   const data = result.map(notice=>{
     return {
@@ -42,4 +42,8 @@ export const readRecruitNoticeByKeyword = async(keyword) => {
     }
   });
   return data;
+}
+
+export const readRecruitNoticeByNoticeId = async (noticeId) => {
+  return await recruitRepository.readRecruitNoticeByNoticeId(noticeId);
 }

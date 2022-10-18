@@ -82,3 +82,13 @@ export const readRecruitNoticeByKeyword = async (keyword) => {
   });
   return data;
 }
+
+export const readRecruitNoticeByNoticeId = async (noticeId) => {
+  const data = await prismaClient.$queryRaw`
+    SELECT recruit_notice.id,nation,area,position,compensation,tech,content,c.company_name,(SELECT JSON_ARRAYAGG(id) FROM recruit_notice WHERE company_id=c.id AND id != ${noticeId}) other_notice
+    FROM recruit_notice left join company c on recruit_notice.company_id = c.id
+    WHERE recruit_notice.id=${noticeId}
+  `;
+
+  return data;
+}
