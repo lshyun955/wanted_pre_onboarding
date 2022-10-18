@@ -54,5 +54,31 @@ export const readAllRecruitNotice = async () => {
       }
     }
   });
+}
 
+export const readRecruitNoticeByKeyword = async (keyword) => {
+  const data = await prismaClient.recruit_notice.findMany({
+    include:{
+      company:{
+        select:{
+          company_name:true
+        }
+      }
+    },
+    where:{
+      OR:[
+        {
+          tech:{
+          contains:keyword
+          }
+        },
+        {
+          position:{
+          contains:keyword
+          }
+        }
+      ]
+    }
+  });
+  return data;
 }

@@ -15,7 +15,8 @@ export const deleteRecruitNotice = async (noticeId) =>{
 export const readAllRecruitNotice = async () => {
   const result = await recruitRepository.readAllRecruitNotice();
   const data = result.map(notice=>{
-    return {id:notice.id,
+    return {
+      id:notice.id,
       nation:notice.nation,
       area:notice.area,
       position:notice.position,
@@ -23,6 +24,22 @@ export const readAllRecruitNotice = async () => {
       tech:notice.tech,
       company_name:notice.company.company_name
     }
-  })
+  });
+  return data;
+}
+
+export const readRecruitNoticeByKeyword = async(keyword) => {
+  const result = await recruitRepository.readRecruitNoticeByKeyword(keyword);
+  const data = result.map(notice=>{
+    return {
+      id:notice.id,
+      nation:notice.nation,
+      area:notice.area,
+      position:notice.position,
+      compensation:notice.compensation,
+      tech:notice.tech,
+      company_name:notice.company.company_name
+    }
+  });
   return data;
 }

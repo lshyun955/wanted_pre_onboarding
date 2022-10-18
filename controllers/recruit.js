@@ -40,3 +40,15 @@ export const readAllRecruitNotice = async (req,res) => {
     res.status(error.statusCode || 400).json({ message: error.message });
   }
 }
+
+export const readRecruitNoticeByKeyword = async (req,res) => {
+  try{
+    const {keyword} = req.query;
+    const result = await recruitService.readRecruitNoticeByKeyword(keyword);
+    console.log(result)
+    const data = JSON.parse(JSON.stringify(result,(_, value) => (typeof value === 'bigint' ? Number(value.toString()) : value)))
+    res.status(200).json({data});
+  }catch(error){
+    res.status(error.statusCode || 400).json({ message: error.message });
+  }
+}
