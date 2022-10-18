@@ -62,3 +62,13 @@ export const readRecruitNoticeByNoticeId = async (req,res) => {
     res.status(error.statusCode || 400).json({ message: error.message });
   }
 }
+
+export const createApplyRaw = async (req,res) => {
+  try{
+    const {user_id,notice_id} = req.body;
+    await recruitService.createApplyRaw(user_id,notice_id);
+    res.status(200).json({message:"Apply Success"});
+  }catch(error){
+    res.status(error.statusCode || 400).json({ message: error.message });
+  }
+}

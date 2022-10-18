@@ -92,3 +92,12 @@ export const readRecruitNoticeByNoticeId = async (noticeId) => {
 
   return data;
 }
+
+export const createApplyRaw = async (userId,noticeId) => {
+  return await prismaClient.apply_list.create({
+    data:{
+      user_id:userId,
+      notice_id:noticeId
+    }
+  })
+}

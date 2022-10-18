@@ -47,3 +47,7 @@ export const readRecruitNoticeByKeyword = async (keyword) => {
 export const readRecruitNoticeByNoticeId = async (noticeId) => {
   return await recruitRepository.readRecruitNoticeByNoticeId(noticeId);
 }
+
+export const createApplyRaw = async (userId,noticeId) => {
+  return await recruitRepository.createApplyRaw(userId,noticeId);
+}
