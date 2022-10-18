@@ -11,3 +11,18 @@ export const updateRecruitNotice = async (companyId, position,nation,area,compen
 export const deleteRecruitNotice = async (noticeId) =>{
   return await recruitRepository.deleteRecruitNotice(noticeId);
 }
+
+export const readAllRecruitNotice = async () => {
+  const result = await recruitRepository.readAllRecruitNotice();
+  const data = result.map(notice=>{
+    return {id:notice.id,
+      nation:notice.nation,
+      area:notice.area,
+      position:notice.position,
+      compensation:notice.compensation,
+      tech:notice.tech,
+      company_name:notice.company.company_name
+    }
+  })
+  return data;
+}

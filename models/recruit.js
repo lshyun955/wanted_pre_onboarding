@@ -37,3 +37,22 @@ export const deleteRecruitNotice = async (noticeId) => {
     }
   })
 }
+
+export const readAllRecruitNotice = async () => {
+  return await prismaClient.recruit_notice.findMany({
+    select:{
+      id:true,
+      nation:true,
+      area:true,
+      position:true,
+      compensation:true,
+      tech:true,
+      company:{
+        select:{
+          company_name:true
+        }
+      }
+    }
+  });
+
+}

@@ -30,3 +30,13 @@ export const deleteRecruitNotice = async (req,res)=>{
     res.status(error.statusCode || 400).json({ message: error.message });
   }
 }
+
+export const readAllRecruitNotice = async (req,res) => {
+  try{
+    const result = await recruitService.readAllRecruitNotice();
+    const data = JSON.parse(JSON.stringify(result,(_, value) => (typeof value === 'bigint' ? Number(value.toString()) : value)))
+    res.status(200).json({data});
+  }catch(error){
+    res.status(error.statusCode || 400).json({ message: error.message });
+  }
+}
