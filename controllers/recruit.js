@@ -20,3 +20,13 @@ export const updateRecruitNotice = async (req,res) => {
     res.status(error.statusCode || 400).json({ message: error.message });
   }
 }
+
+export const deleteRecruitNotice = async (req,res)=>{
+  try{
+    const noticeId = req.params.id;
+    await recruitService.deleteRecruitNotice(Number(noticeId));
+    res.status(200).json({message:"Delete Success"});
+  }catch(error){
+    res.status(error.statusCode || 400).json({ message: error.message });
+  }
+}

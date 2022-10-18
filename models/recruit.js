@@ -25,6 +25,15 @@ export const updateRecruitNotice = async (noticeId, position,nation,area,compens
       area,
       compensation,
       tech,
-      content}
+      content
+    }
+  })
+}
+
+export const deleteRecruitNotice = async (noticeId) => {
+  return await prismaClient.recruit_notice.delete({
+    where:{
+      id:noticeId
+    }
   })
 }
