@@ -1,11 +1,9 @@
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
 import express from 'express';
-import morgan from "morgan";
+import morgan from 'morgan';
 import routes from './routes/recruit.js';
 dotenv.config();
-const corsOption = {
-  origin: '*',
-};
+
 const app = express();
 
 app.use(morgan('dev'));
